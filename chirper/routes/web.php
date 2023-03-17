@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('chirps', ChirpController::class)
-    ->only(['indes', 'store'])
+    ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
