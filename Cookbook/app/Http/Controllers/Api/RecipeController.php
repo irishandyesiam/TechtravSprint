@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\RecipeResource;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,9 +14,9 @@ class RecipeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
-        return view('recipes.index');
+        return RecipeResource::collection(Recipe::all());
     }
 
     /**
@@ -30,7 +32,14 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $recipe = Recipe::create([
+            'recipeName' => $request->recipeName,
+            'image' => $request->image,
+            'ingredients' => $request->ingredients,
+            'instructions' => $request->instructions,
+        ]);
+
+        return new RecipeResource(($recipe));
     }
 
     /**
@@ -38,7 +47,7 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        //
+        return new RecipeResource($recipe);
     }
 
     /**
