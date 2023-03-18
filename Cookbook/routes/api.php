@@ -15,17 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::apiResource('users', UserController::class);
+Route::apiResource('users', UserController::class);
 
-Route::prefix('users')
-->name('users.')
-->group(function () {
-    Route::get('/', [userController::class, 'index'])->name('index');
-    Route::post('/', [userController::class, 'store'])->name('store');
-    Route::get('/', [userController::class, 'show'])->name('show');
-    Route::put('/', [userController::class, 'update'])->name('update');
-    Route::delete('/', [userController::class, 'destory'])->name('destory');
-});
+// Written out doesn't work?
+// Route::prefix('users')
+// ->name('users.')
+// ->group(function () {
+//     Route::get('/', [userController::class, 'index'])->name('index');
+//     Route::post('/', [userController::class, 'store'])->name('store');
+//     Route::get('/', [userController::class, 'show'])->name('show');
+//     Route::put('/{user}', [userController::class, 'update'])->name('update');
+//     Route::delete('/{user}', [userController::class, 'destroy'])->name('destroy');
+// });
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
