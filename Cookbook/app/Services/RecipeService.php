@@ -2,43 +2,30 @@
 
 namespace App\Services;
 
-use http\Client;
-use http\Client\Request;
-use http\QueryString;
+use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests
 
-class RecipeService
-{
-    protected $client;
-    protected $apiKey;
-    protected $host;
+$request = new HttpRequest();
+$request->setUrl('https://tasty.p.rapidapi.com/recipes/list');
+$request->setMethod(HTTP_METH_GET);
 
-    public function __construct($apiKey, $host)
-    {
-        $this->client = new Client;
-        $this->apiKey = '07710484e3msh42b10869d913fd2p1180a4jsn6142c9c0fe21';
-        $this->host = 'tasty.p.rapidapi.com';
-    }
+$request->setQueryData([
+	'from' => '0',
+	'size' => '20',
+	'q' => 'sour cream'
+]);
 
-    public function searchRecipes($searchTerm)
-    {
-        $request = new Request;
-        $request->setRequestUrl('https://tasty.p.rapidapi.com/recipes/list');
-        $request->setRequestMethod('GET');
-        $request->setQuery(new QueryString([
-            'from' => '0',
-            'size' => '20',
-            'q' => $searchTerm,
-        ]));
-        $request->setHeaders([
-            'X-RapidAPI-Key' => $this->apiKey,
-            'X-RapidAPI-Host' => $this->host,
-        ]);
+$request->setHeaders([
+	'X-RapidAPI-Key' => '07710484e3msh42b10869d913fd2p1180a4jsn6142c9c0fe21',
+	'X-RapidAPI-Host' => 'tasty.p.rapidapi.com'
+]);
 
-        $this->client->enqueue($request)->send();
-        $response = $this->client->getResponse();
+try {
+	$response = $request->send();
 
-        return json_decode($response->getBody()->getContents());
-    }
+	echo $response->getBody();
+} catch (HttpException $ex) {
+	echo $ex;
 }
+
 
 
