@@ -63,7 +63,12 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        //
+        $recipe->update([
+            'recipeName' => $request->recipeName,
+            'image' => $request->image,
+            'ingredients' => $request->ingredients,
+            'instructions' => $request->instructions,
+        ]);
     }
 
     /**
