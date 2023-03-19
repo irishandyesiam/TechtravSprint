@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 class TastyController extends Controller
 {
     
-
+    // The remote server's SSL certificate or SSH fingerprint was deemed not OK. This error code has been unified with CURLE_SSL_CACERT since 7.62.0. Its previous value was 51. Installed OpenSSL, Strawberry, and NASM. I set up all PATH. I still cannot build openSSL to retrieve SSL certficate and check if valid.
     public function index()
     {
         $response = Http::withHeaders([
