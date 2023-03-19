@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('tasty',[TastyController::class, 'index']);
+Route::get('/tasty',[TastyController::class, 'index'])->name('tasty.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

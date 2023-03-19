@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Http\Client\HttpClientFactory;
+use Illuminate\Support\Facades\Http;
 
 
 class TastyController extends Controller
 {
-    private $httpClient;
-
-    public function __construct(HttpClientFactory $httpClient)
-    {
-        $this->httpClient = $httpClient->create();
-    }
+    
 
     public function index()
     {
-        $response = $this->httpClient->get('/recipes/list', [
-            'query' => [
-                'from' => '0',
-                'size' => '20',
-                'q' => 'sour cream'
-            ]
+        $response = Http::withHeaders([
+            'X-RapidAPI-Key' => '07710484e3msh42b10869d913fd2p1180a4jsn6142c9c0fe21',
+	        'X-RapidAPI-Host' => 'tasty.p.rapidapi.com'
+        ])->get('https://tasty.p.rapidapi.com/recipes/list', [
+            'from' => '0',
+	        'size' => '20',
+	        'q' => 'sour cream'
         ]);
+
 
         return response($response->getBody());
     }
