@@ -8,6 +8,7 @@ use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Http;
 
 class RecipeController extends Controller
 {
@@ -16,7 +17,8 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return RecipeResource::collection(Recipe::all());
+        $recipes = RecipeResource::collection(Recipe::all());
+        return view('recipes.index', compact('recipes'));
     }
 
     /**

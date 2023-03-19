@@ -1,14 +1,39 @@
-<x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('recipes.store') }}">
-            @csrf
-            <textarea
-                name="message"
-                placeholder="{{ __('What\'s for dinner?') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-            >{{ old('message') }}</textarea>
-            <x-input-error :messages="$errors->get('message')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('Enter Recipe') }}</x-primary-button>
-        </form>
+<h1>Please let this work</h1>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class ="py-4 px-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Recipe Name</th>
+                        <th>Image</th>
+                        <th>Ingredients</th>
+                        <th>Instructions</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($recipes as $recipe)
+                    <tr>
+                        <td>{{ $recipe->recipeName }}</td>
+                        <td>{{ $recipe->image }}</td>
+                        <td>{{ $recipe->ingredients }}</td>
+                        <td>{{ $recipe->instructions }}</td>
+                        <td>
+                            <a href="{{ url('/') }}" class="btn btn-primary">Update</a>
+                        </td>
+                        <td>
+                            <a href="{{ url('/') }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4"> No Record Found</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
-</x-app-layout>
+</div>
