@@ -41,8 +41,7 @@ class RecipeController extends Controller
             'instructions' => $request->instructions,
         ]);
 
-        // return view('recipes.store');
-        return new RecipeResource(($recipe));
+        return redirect('/add_recipe')->with('message', 'Recipe Added Successfully');
     }
 
     /**

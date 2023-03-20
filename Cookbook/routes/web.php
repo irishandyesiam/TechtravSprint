@@ -25,11 +25,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::apiResource('recipes', RecipeController::class)
-    ->only(['index', 'store'])
+    ->only(['index'])
     ->middleware(['auth', 'verified']);
 
 Route::controller(App\Http\Controllers\Api\RecipeController::class)->group(function (){
     Route::get('/add_recipe', 'create');
+    Route::post('/add_recipe', 'store');
 });
 
 Route::middleware('auth')->group(function () {
