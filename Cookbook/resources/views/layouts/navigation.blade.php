@@ -15,12 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    
+                    <x-nav-link :href="url('add_recipe')" :active="request()->routeIs('add_recipe')">
+                        {{ __('Add Recipe') }}
+                    </x-nav-link>
+                    
                     <x-nav-link :href="route('recipes.index')" :active="request()->routeIs('recipes.index')">
                         {{ __('Recipes') }}
                     </x-nav-link>
-                    {{-- <a class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out" href="{{ url('api/recipes') }}">
-                    {{ __('Recipes') }}
-                    </a> --}}
+                    
                 </div>
             </div>
 

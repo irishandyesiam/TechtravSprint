@@ -26,7 +26,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+        return view('recipes.create');
     }
 
     /**
@@ -41,6 +41,7 @@ class RecipeController extends Controller
             'instructions' => $request->instructions,
         ]);
 
+        // return view('recipes.store');
         return new RecipeResource(($recipe));
     }
 
