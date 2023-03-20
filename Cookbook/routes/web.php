@@ -20,10 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get(uri: '/', fn() => [
-    $service = resolve(Service::class),
-    dd($service->recipes())
-]);
+// Route::get(uri: '/', fn() => [
+//     $service = resolve(Service::class),
+//     dd($service->recipes())
+// ]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

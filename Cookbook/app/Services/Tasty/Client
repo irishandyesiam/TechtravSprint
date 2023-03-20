@@ -3,5 +3,8 @@
 namespace App\Services\Tasty;
 
 class Client {
-    //
+    public function __construct(
+        protected string $uri,
+        protected string $token,
+    ) {}
 }
