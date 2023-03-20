@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get(uri: '/', function () {
+    $service = resolve( name:\App\Services\DataFromTasty\Service::class);
+
+    dd($service->recipes());
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
