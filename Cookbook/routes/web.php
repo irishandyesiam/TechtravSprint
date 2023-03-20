@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get(uri: '/', function () {
+Route::get(uri: '/', data: function () {
     $service = resolve( name:\App\Services\DataFromTasty\Service::class);
 
     dd($service->recipes());
