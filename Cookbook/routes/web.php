@@ -31,6 +31,8 @@ Route::apiResource('recipes', RecipeController::class)
 Route::controller(App\Http\Controllers\Api\RecipeController::class)->group(function (){
     Route::get('/add_recipe', 'create');
     Route::post('/add_recipe', 'store');
+    Route::get('/edit_recipe/{recipe_id}', 'edit');
+    Route::put('/update_recipe/{recipe_id}', 'update');
 });
 
 Route::middleware('auth')->group(function () {

@@ -55,22 +55,25 @@ class RecipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Recipe $recipe)
+    public function edit($recipe_id)
     {
-        //
+        $recipe = Recipe::find($recipe_id);
+        return view('recipes.edit', compact('recipe'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(Request $request, $recipe_id)
     {
-        $recipe->update([
+        $recipe = Recipe::where('id', $recipe_id)->update([
             'recipeName' => $request->recipeName,
             'image' => $request->image,
             'ingredients' => $request->ingredients,
             'instructions' => $request->instructions,
         ]);
+
+        return redirect('/recipes')->with('message', 'Recipe Updated Successfully');
     }
 
     /**

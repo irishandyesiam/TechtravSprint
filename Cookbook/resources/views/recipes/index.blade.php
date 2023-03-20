@@ -7,6 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <x-success-status class="mb-4" :status="session('message')"/>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -30,7 +32,7 @@
                                         <td class="whitespace-nowrap px-6 py-4">{{ $recipe->ingredients }}</td>
                                         <td class="whitespace-nowrap px-6 py-4">{{ $recipe->instructions }}</td>
                                         <td class="whitespace-nowrap px-6 py-4">
-                                            <a href="{{ url('/') }}">
+                                            <a href="{{ url('/edit_recipe/'.$recipe->id) }}">
                                                 <x-primary-button class="mt-4">{{ __('Update') }}</x-primary-button>
                                             </a>
                                         </td>
