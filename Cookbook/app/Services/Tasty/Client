@@ -2,9 +2,49 @@
 
 namespace App\Services\Tasty;
 
-class Client {
+use App\Services\Concerns\HasFake;
+use Illuminate\Support\Facades\Http;
+
+class Client 
+{
+    use HasFake;
+
     public function __construct(
         protected string $uri,
         protected string $token,
+        protected int $timeout = 10,
+        protected null|int $retryTimes = null,
+        protected null|int $retryMilliseconds = null,
     ) {}
+
+    public function recipes()
+    {
+        $request = Http::withToken(
+            token: $this->token,
+        )->withHeaders([
+            'Accept' => 'application/json',
+        ])->timeout(
+            seconds: $this->timeout,
+        );
+
+        if (
+            ! is_null($this->retryTimes)
+            && ! is_null($this->retryMilliseconds)
+        ) {
+            $request->retry(
+                times: $this->retryTimes,
+                sleep: $this->retryMilliseconds,
+            );
+        }
+
+        $response = $request->get(
+            url: "{$this->uri}/list",
+        );
+
+        if (! $response->successful()) {
+            return $response->toException();
+        }
+
+        return $response;
+    }
 }
