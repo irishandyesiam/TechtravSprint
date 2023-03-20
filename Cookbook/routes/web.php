@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RecipeController;
+use App\Services\DataFromTasty\Service;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get(uri: '/', data: function () {
-    $service = resolve( name:\App\Services\DataFromTasty\Service::class);
-
-    dd($service->recipes());
-});
+Route::get(uri: '/', fn() => [
+    $service = resolve(Service::class),
+    dd($service->recipes())
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
