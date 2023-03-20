@@ -196,6 +196,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\HttpClientProvider::class,
         App\Providers\DataFromTastyServiceProvider::class,
+        App\Providers\TastyServiceProvider::class,
     ],
 
     /*
