@@ -25,6 +25,9 @@ Route::get('/', function () {
 //     dd($service->recipes())
 // ]);
 
+Route::get('/tasty-api', [TastyAPIController::class, 'getTastyAPI']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
