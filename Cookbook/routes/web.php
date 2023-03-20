@@ -33,6 +33,7 @@ Route::controller(App\Http\Controllers\Api\RecipeController::class)->group(funct
     Route::post('/add_recipe', 'store');
     Route::get('/edit_recipe/{recipe_id}', 'edit');
     Route::put('/update_recipe/{recipe_id}', 'update');
+    Route::delete('/delete_recipe/{recipe_id}', 'destroy');
 });
 
 Route::middleware('auth')->group(function () {

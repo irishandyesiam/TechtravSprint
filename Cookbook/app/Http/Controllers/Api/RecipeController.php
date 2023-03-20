@@ -79,8 +79,9 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recipe $recipe)
+    public function destroy($recipe_id)
     {
-        return $recipe->delete();
+        $recipe = Recipe::find($recipe_id)->delete();
+        return redirect('/recipes')->with('message', 'Recipe Deleted Successfully');
     }
 }

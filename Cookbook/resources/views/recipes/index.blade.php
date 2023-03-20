@@ -37,9 +37,11 @@
                                             </a>
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4">
-                                            <a href="{{ url('/') }}">
+                                            <form action="{{ url('delete_recipe/'.$recipe->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
                                                 <x-danger-button class="mt-4">{{ __('Delete') }}</x-danger-button>
-                                            </a>
+                                            </form>
                                         </td>
                                     </tr>
                                     @empty
