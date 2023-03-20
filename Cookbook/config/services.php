@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'data-from-tasty' => [
+        'uri' => env( key: 'DATA_FROM_TASTY_URI', default: 'https://tasty.p.rapidapi.com/recipes/list'),
+        'timeout' => env( key: 'DATA_FROM_WORK_TIMEOUT', default: 10)
+    ]
 ];
