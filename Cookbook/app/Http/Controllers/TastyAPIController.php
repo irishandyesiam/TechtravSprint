@@ -20,7 +20,6 @@ class TastyAPIController extends Controller
             'size' => 10,
             'q' => "sour cream"
         ],
-        'verify' => false,
     ]);
     $data = json_decode($response->getBody());
     return response()->json($data);
