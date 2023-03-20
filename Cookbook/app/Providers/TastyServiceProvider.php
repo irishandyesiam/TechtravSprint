@@ -16,6 +16,9 @@ class TastyServiceProvider extends ServiceProvider
             return new Client(
                 uri: config('services.tasty.uri'),
                 token: config('services.tasty.token'),
+                timeout: config('services.tasty.timeout'),
+                retryTimes: config('services.tasty.retry_times'),
+                retryMilliseconds: config('services.tasty.retry_milliseconds'),
             );
         });
     }
