@@ -34,5 +34,10 @@ return [
     'data-from-tasty' => [
         'uri' => env( key: 'DATA_FROM_TASTY_URI', default: 'https://tasty.p.rapidapi.com/recipes/list'),
         'timeout' => env( key: 'DATA_FROM_WORK_TIMEOUT', default: 10)
-    ]
+    ],
+
+    'tasty' => [
+        'uri' => env( key: 'TASTY_API_URI', default: 'https://tasty.p.rapidapi.com/recipes'),
+        'token' => env('TASTY_API_TOKEN'),
+    ],
 ];
